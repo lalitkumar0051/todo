@@ -35,7 +35,7 @@ class Settings extends StatelessWidget {
                           ListTile(
                             title: Text("Small"),
                             onTap: () {
-                              fontProvider.setSmall();
+                              context.read<FontProvider>().setSmall();
 
                               Navigator.pop(context);
                             },
@@ -43,7 +43,7 @@ class Settings extends StatelessWidget {
                           ListTile(
                             title: Text("Medium"),
                             onTap: () {
-                              fontProvider.setMedium();
+                              context.read<FontProvider>().setMedium();
 
                               Navigator.pop(context);
                             },
@@ -51,7 +51,7 @@ class Settings extends StatelessWidget {
                           ListTile(
                             title: Text("Large"),
                             onTap: () {
-                              fontProvider.setLarge();
+                              context.read<FontProvider>().setLarge();
 
                               Navigator.pop(context);
                             },

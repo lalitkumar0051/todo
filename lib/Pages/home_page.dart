@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider_learn/Pages/my_fab.dart';
 import 'package:provider_learn/Pages/settings.dart';
+import 'package:provider_learn/comps/dialog_box.dart';
 import 'package:provider_learn/comps/todo_tile.dart';
 import 'package:provider_learn/services/firestore.dart';
 
 class HomeScreen extends StatefulWidget {
+  final String title = "Todo App";
   const HomeScreen({super.key});
 
   @override
@@ -20,44 +22,14 @@ class _HomeScreenState extends State<HomeScreen> {
     showDialog(
       context: context,
       builder: (context) {
-        return AlertDialog(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-          title: Text("Add Task", style: TextStyle()),
-
-          content: TextField(
-            controller: taskController,
-            decoration: InputDecoration(
-              hintText: "Enter you Task",
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(1)),
-              ),
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context);
-                taskController.clear();
-              },
-              child: Text("Cancel"),
-            ),
-            TextButton(
-              onPressed: () {
-                firestoreService.addTasks(taskController.text);
-                setState(() {
-                  tasks.add({
-                    "title": taskController.text.trim(),
-                    "isDone": false,
-                  });
-                });
-                Navigator.pop(context);
-                taskController.clear();
-              },
-              child: Text("Done"),
-            ),
-          ],
+        return DialogBox(
+          controller: taskController,
+          onPressed: () {
+            setState(() {
+              tasks.add({"title": taskController.text.trim(), "isDone": false});
+            });
+            Navigator.pop(context);
+          },
         );
       },
     ).then((_) {
