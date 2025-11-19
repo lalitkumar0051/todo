@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "988356205140",
+    "project_id": "crudtut-17d8b",
+    "storage_bucket": "crudtut-17d8b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:988356205140:android:99a55a79b923f74d812bc1",
+        "android_client_info": {
+          "package_name": "com.example.provider_learn"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCKzEWSHfip18_iQ40s9pZYGWti_AJYXo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
