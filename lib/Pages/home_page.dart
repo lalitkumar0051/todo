@@ -11,7 +11,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final List<Map<String, dynamic>> tasks = []; // task + isDone
-  final TextEditingController taskController = TextEditingController();
+  final TextEditingController taskController =
+      TextEditingController(); //TextEditingController to get text from TextField
   final FirestoreService firestoreService = FirestoreService();
   void addTask() {
     showDialog(
