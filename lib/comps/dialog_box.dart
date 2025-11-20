@@ -28,8 +28,18 @@ class DialogBox extends StatelessWidget {
         ),
       ),
       actions: [
-        TextButton(onPressed: onCancel, child: Text("Cancel")),
-        TextButton(onPressed: onDone, child: Text("Done")),
+        // TextButton(onPressed: onCancel, child: Text("Cancel")),
+        MaterialButton(
+          onPressed: onCancel,
+          color: Colors.yellow[600],
+          child: Text("Cancel"),
+        ),
+        // TextButton(onPressed: onDone, child: Text("Done")),
+        MaterialButton(
+          onPressed: onDone,
+          color: Colors.yellow[600],
+          child: Text("Done"),
+        ),
       ],
     );
   }

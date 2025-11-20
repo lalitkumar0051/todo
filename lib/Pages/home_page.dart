@@ -18,6 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final _mybox = Hive.box('mybox');
   TodoDatabase db = TodoDatabase();
   @override
+  // init state method runs once when the app starts
   void initState() {
     if (_mybox.get("TASKS") == null) {
       db.createInitialData();
@@ -27,10 +28,10 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
   }
 
-  // final List<Map<String, dynamic>> tasks = []; // task + isDone
-  final _taskController =
-      TextEditingController(); //TextEditingController to get text from TextField
+  final _taskController = TextEditingController();
 
+
+  // save new task
   void addTask() {
     showDialog(
       context: context,
