@@ -2,18 +2,21 @@ import 'package:flutter/material.dart';
 
 class DialogBox extends StatelessWidget {
   final TextEditingController controller;
-  final Function()? onPressed;
+  final Function() onCancel;
+  final Function() onDone;
   const DialogBox({
     super.key,
     required this.controller,
-    required this.onPressed,
+    required this.onCancel,
+    required this.onDone,
   });
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      backgroundColor: Colors.yellow[300],
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(1)),
-      title: Text("Add Task", style: TextStyle()),
+      title: Text("Add Task"),
 
       content: TextField(
         controller: controller,
@@ -25,14 +28,8 @@ class DialogBox extends StatelessWidget {
         ),
       ),
       actions: [
-        TextButton(
-          onPressed: () {
-            Navigator.pop(context);
-            controller.clear();
-          },
-          child: Text("Cancel"),
-        ),
-        TextButton(onPressed: onPressed, child: Text("Done")),
+        TextButton(onPressed: onCancel, child: Text("Cancel")),
+        TextButton(onPressed: onDone, child: Text("Done")),
       ],
     );
   }

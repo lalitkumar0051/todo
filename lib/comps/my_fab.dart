@@ -8,7 +8,8 @@ class MyFab extends StatelessWidget {
   Widget build(BuildContext context) {
     return FloatingActionButton(
       onPressed: onPressed,
-      backgroundColor: Color(0xff03045e),
+      backgroundColor: Colors.amber,
+      foregroundColor: Colors.black,
       child: Icon(Icons.add),
     );
   }

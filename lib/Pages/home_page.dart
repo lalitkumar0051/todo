@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:provider_learn/Pages/my_fab.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:provider_learn/comps/my_fab.dart';
 import 'package:provider_learn/Pages/settings.dart';
 import 'package:provider_learn/comps/dialog_box.dart';
 import 'package:provider_learn/comps/todo_tile.dart';
-import 'package:provider_learn/services/firestore.dart';
+import 'package:provider_learn/data/database.dart';
 
 class HomeScreen extends StatefulWidget {
   final String title = "Todo App";
@@ -14,35 +15,63 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final List<Map<String, dynamic>> tasks = []; // task + isDone
-  final TextEditingController taskController =
+  final _mybox = Hive.box('mybox');
+  TodoDatabase db = TodoDatabase();
+  @override
+  void initState() {
+    if (_mybox.get("TASKS") == null) {
+      db.createInitialData();
+    } else {
+      db.loadData();
+    }
+    super.initState();
+  }
+
+  // final List<Map<String, dynamic>> tasks = []; // task + isDone
+  final _taskController =
       TextEditingController(); //TextEditingController to get text from TextField
-  final FirestoreService firestoreService = FirestoreService();
 
   void addTask() {
     showDialog(
       context: context,
       builder: (context) {
         return DialogBox(
-          controller: taskController,
-          onPressed: () {
+          controller: _taskController,
+          onCancel: () {
+            Navigator.pop(context);
+            _taskController.clear();
+          },
+          onDone: () {
             setState(() {
-              tasks.add({"title": taskController.text.trim(), "isDone": false});
+              db.tasks.add({
+                "title": _taskController.text.trim(),
+                "isDone": false,
+              });
             });
             Navigator.pop(context);
+            db.updateData();
           },
         );
       },
     ).then((_) {
-      taskController.clear();
+      _taskController.clear();
     });
+  }
+
+  // checkbox was tapped
+  void checkBoxChanged(bool? value, int index) {
+    setState(() {
+      db.tasks[index]["isDone"] = value;
+    });
+    db.updateData();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffcaf0f8),
+      backgroundColor: Colors.yellow[200],
       appBar: AppBar(
+        backgroundColor: Colors.yellow[400],
         title: const Text("Todo"),
         actions: [
           IconButton(
@@ -59,21 +88,20 @@ class _HomeScreenState extends State<HomeScreen> {
 
       floatingActionButton: MyFab(onPressed: addTask),
       body: ListView.builder(
-        itemCount: tasks.length,
+        itemCount: db.tasks.length,
         itemBuilder: (context, index) {
-          final task = tasks[index];
+          final task = db.tasks[index];
           return TodoTile(
             title: task["title"],
             value: task["isDone"],
             onChanged: (value) {
-              setState(() {
-                task["isDone"] = value;
-              });
+              checkBoxChanged(value, index);
             },
             onPressed: () {
               setState(() {
-                tasks.removeAt(index);
+                db.tasks.removeAt(index);
               });
+              db.updateData();
             },
           );
         },

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import 'package:provider_learn/providers/font_provider.dart';
 
 class Settings extends StatelessWidget {
