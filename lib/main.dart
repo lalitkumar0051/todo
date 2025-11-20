@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider_learn/Pages/home_page.dart';
-import 'package:provider_learn/providers/font_provider.dart';
+import 'package:todo_app/Pages/home_page.dart';
+import 'package:todo_app/providers/font_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 

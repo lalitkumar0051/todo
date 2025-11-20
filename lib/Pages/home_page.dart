@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:provider_learn/comps/my_fab.dart';
-import 'package:provider_learn/Pages/settings.dart';
-import 'package:provider_learn/comps/dialog_box.dart';
-import 'package:provider_learn/comps/todo_tile.dart';
-import 'package:provider_learn/data/database.dart';
+import 'package:todo_app/comps/my_fab.dart';
+import 'package:todo_app/Pages/settings.dart';
+import 'package:todo_app/comps/dialog_box.dart';
+import 'package:todo_app/comps/todo_tile.dart';
+import 'package:todo_app/data/database.dart';
 
 class HomeScreen extends StatefulWidget {
   final String title = "Todo App";
@@ -29,7 +29,6 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   final _taskController = TextEditingController();
-
 
   // save new task
   void addTask() {
