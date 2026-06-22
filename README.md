@@ -6,13 +6,14 @@ Features
 1. Add new tasks
 2. Edit existing tasks
 3. Delete tasks
-Mark tasks as completed
-Persistent data storage
-Responsive user interface
-Tech Stack
-Flutter
-Dart
-Shared Preferences / SQLite
+4. Mark tasks as completed
+5. Persistent data storage
+6. Responsive user interface
+
+# Tech Stack
+1. Flutter
+2. Dart
+3. Shared Preferences / SQLite
 
 ## Getting Started
 
