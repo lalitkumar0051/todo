@@ -1,6 +1,18 @@
 # Todo App
 
-A new Flutter project.
+A simple and responsive Todo application that helps users manage daily tasks efficiently.
+
+Features
+1. Add new tasks
+2. Edit existing tasks
+3. Delete tasks
+Mark tasks as completed
+Persistent data storage
+Responsive user interface
+Tech Stack
+Flutter
+Dart
+Shared Preferences / SQLite
 
 ## Getting Started
 
